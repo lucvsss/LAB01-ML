@@ -1,4 +1,16 @@
 consulta,categoria_busqueda,limite
-homicidio Chile,homicidio,5
-trafico de drogas Chile,trafico_drogas,5
-robo con violencia Chile,robo_con_violencia,5
+trafico de drogas La Serena,trafico_drogas,6
+trafico de drogas Coquimbo,trafico_drogas,6
+trafico de drogas Ovalle,trafico_drogas,6
+trafico de drogas Illapel,trafico_drogas,5
+trafico de drogas Salamanca,trafico_drogas,5
+trafico de drogas Los Vilos,trafico_drogas,5
+narcotrafico region de Coquimbo,trafico_drogas,8
+banda narcotrafico region de Coquimbo,organizacion_criminal,6
+operativo antidrogas region de Coquimbo,operativo_policial,6
+incautacion droga region de Coquimbo,incautacion,6
+sicariato region de Coquimbo droga,sicariato,6
+homicidio narcotrafico Coquimbo,sicariato,6
+homicidio narcotrafico La Serena,sicariato,5
+armas droga incautacion region de Coquimbo,armas,6
+lavado de activos narcotrafico Coquimbo,lavado_activos,5

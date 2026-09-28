@@ -1,5 +1,31 @@
 id_noticia,fuente,url,categoria_busqueda
-N001,BioBioChile,https://www.biobiochile.cl/noticias/nacional/region-metropolitana/2026/09/01/investigan-asesinato-en-san-ramon-hombre-muere-tras-ataque-a-tiros-en-poblacion-la-bandera.shtml,homicidio
-N002,Cooperativa,https://www.cooperativa.cl/noticias/pais/policial/drogas/pdi-desbarato-red-de-narcotrafico-en-los-rios-12-detenidos-y-150-kilos/2026-08-21/123148.html,trafico_drogas
-N003,LaTercera,https://www.latercera.com/nacional/noticia/pdi-detuvo-a-dos-colombianos-por-el-crimen-el-presunto-ajuste-de-cuentas-narco-detras-de-horroroso-homicidio-en-curacavi/,homicidio
-N004,Cooperativa,https://www.cooperativa.cl/noticias/pais/policial/drogas/cayo-narcobanda-en-maipu-y-recoleta-ocultaban-la-mercancia-en-la-rueda/2026-08-30/133248.html,trafico_drogas
+N037,fiscaliadechile.cl,https://www.fiscaliadechile.cl/index.php/actualidad/noticias/regionales/fiscalia-de-coquimbo-formaliza-sujetos-detenidos-por-carabineros
+N038,Radio Guayacan,https://radioguayacan.cl/os7-coquimbo-incauto-mas-de-250-kilos-de-drogas-en-la-ruta-5-norte-avaluada-en-2-200-millones/
+N039,La Tercera,https://www.latercera.com/nacional/noticia/avaluada-en-cerca-de-11-mil-millones-incautan-casi-una-tonelada-de-droga-en-coquimbo/
+N040,Mi Radio,https://www.miradiols.cl/2026/08/28/almacen-narcoemprendimiento-coquimbo/
+N041,Serena y Coquimbo,https://serenaycoquimbo.cl/coquimbo-cinco-detenidos-por-presunto-trafico-de-drogas-y-porte-de-armas-en-pan-de-azucar/
+N042,TVN,https://www.tvn.cl/actualidad-y-tendencias/actualidad/coquimbo-acceso-a-cuentas-y-telefonos-marcaran-etapa-tras-decomiso-de
+N043,fiscaliadechile.cl,https://www.fiscaliadechile.cl/actualidad/noticias/ovalle-sujeto-detenido-con-ketamina-quedo-formalizado-por-homicidio-frustrado
+N044,diarioeldia.cl,https://www.diarioeldia.cl/noticias/2026/09/17/151318-tres-detenidos-en-ovalle-por-ingreso-de-10-kilos-de-droga-a-la-serena
+N046,fiscaliadechile.cl,https://www.fiscaliadechile.cl/actualidad/noticias/ovalle-sujeto-queda-en-prision-preventiva-tras-ser-imputado-de-trafico-de-6
+N047,BioBioChile,https://www.biobiochile.cl/noticias/nacional/region-de-coquimbo/2026/06/16/decomisan-casi-50-ampollas-de-fentanilo-en-ovalle-principal-imputado-tenia-pension-de-gracia.shtml
+N049,elobservatodo.cl,https://www.elobservatodo.cl/noticia/sociedad/salamanca-5-extranjeros-quedan-en-prision-preventiva-por-trafico-de-drogas-y-armas
+N050,fiscaliadechile.cl,https://www.fiscaliadechile.cl/actualidad/noticias/inteligencia-para-investigar-en-illapel-la-fiscalia-formalizo-mujer-por-trafico
+N053,BioBioChile,https://www.biobiochile.cl/noticias/nacional/region-de-coquimbo/2026/06/09/con-5-gendarmes-de-illapel-detenidos-culmina-operativo-por-trafico-y-corrupcion-en-3-regiones.shtml
+N054,La Serena Online,https://laserenaonline.cl/2026/09/26/salamanca-prision-preventiva-a-cinco-extranjeros-por-trafico-y-ley-de-control-de-armas/
+N057,La Serena Online,https://laserenaonline.cl/2026/09/19/pdi-desarticula-organizacion-criminal-dedicada-al-trafico-de-drogas-en-salamanca/
+N058,fiscaliadechile.cl,https://www.fiscaliadechile.cl/actualidad/noticias/los-vilos-conductor-buscado-por-homicidio-llevaba-drogas-y-quedo-en-prision
+N059,BioBioChile,https://www.biobiochile.cl/noticias/nacional/region-de-coquimbo/2026/08/04/detienen-en-los-vilos-a-hombre-con-orden-por-homicidio-intento-darse-a-la-fuga-y-llevaba-droga.shtml
+N062,diarioeldia.cl,https://www.diarioeldia.cl/noticias/2026/04/25/135510-pdi-desarticula-red-de-microtrafico-en-los-vilos-incautan-12-mil-dosis-de-droga
+N064,Tiempo de San Juan,https://www.tiempodesanjuan.com/chile/golpe-al-narcotrafico-en-coquimbo-incautaron-casi-260-kilos-de-droga-y-evitaron-que-circularan-734-mil-dosis_1788548682
+N065,| GORE Coquimbo,https://www.gorecoquimbo.cl/noticias/denuncia-ciudadana-permitio-a-la-pdi-detener-a-banda-organizada-de-trafico
+N066,La Serena Online,https://laserenaonline.cl/2026/05/11/carabineros-intercepta-en-coquimbo-casi-una-tonelada-de-droga-que-era-transportada-a-la-zona-centro/
+N069,Teletrece,https://www.t13.cl/noticia/nacional/reportajes-t13/delivery-narco-clan-familiar-vendia-drogas-armas-municiones-por-redes-sociales-14-4
+N070,La Nación,https://www.lanacion.cl/descubren-lapiz-pistola-en-poder-de-banda-narco-que-trasladaba-droga-a-la-rm/
+N071,Canal 13,https://www.13.cl/programas/tu-dia/momentos/cae-la-banda-los-shein-un-adolescente-de-16-anos-lideraba-organizacion-de
+N072,Meganoticias,https://www.meganoticias.cl/nacional/517198-rescate-mono-ardilla-operativo-antidrogas-coquimbo-banda-narcotrafico-coquimbo-17-03-2026.html
+N073,Delegación Presidencial Regional de Coquimbo,https://dprcoquimbo.dpr.gob.cl/2025/06/04/pdi-y-fiscalia-desarticulan-banda-con-alto-poder-de-fuego-por-trafico-de-drogas-en-la-serena-y-coquimbo/
+N104,elobservatodo.cl,https://www.elobservatodo.cl/noticia/sociedad/fiscalia-y-pdi-desarticulan-red-con-drogas-y-corrupcion-en-carcel-de-illapel-5-gend
+N074,Mi Radio,https://www.miradiols.cl/2026/03/31/la-integraba-una-menor-de-16-anos-desarticulan-banda-dedicada-al-narcotrafico-en-la-region/
+N082,Meganoticias,https://www.meganoticias.cl/nacional/521635-decomisan-casi-una-tonelada-de-droga-region-de-coquimbo-general-director-destaco-trabajo-de-los-perros-de-la-institucion-09-05-2026.html
+N085,Infobae,https://www.infobae.com/america/america-latina/2023/05/23/golpe-al-tren-de-aragua-en-chile-la-organizacion-criminal-habia-comprado-un-autobus-para-transportar-migrantes-y-droga/

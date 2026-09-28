@@ -63,6 +63,7 @@ class ExtractorGemini(ExtractorLLM):
         self._cliente = None
 
     MAX_CARACTERES = 12000
+    @staticmethod
     def _recortar(texto: str, maximo: int = MAX_CARACTERES) -> str:
         if len(texto) <= maximo:
             return texto

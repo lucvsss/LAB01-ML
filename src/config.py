@@ -41,4 +41,4 @@ COLUMNAS_URLS = ["id_noticia", "fuente", "url", "categoria_busqueda"]
 
 # Gemini: la clave vive en .env (nunca en el código ni en Git).
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
-GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.0-flash").strip() or "gemini-2.0-flash"
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite").strip() or "gemini-3.5-flash-lite"

@@ -114,7 +114,13 @@ class PipelineLaboratorio:
         return ok, fallos
 
     def ejecutar_extraccion(self) -> tuple[int, int]:
-        """Gemini + validación JSON → data/json/{id_noticia}.json."""
+        """Gemini + validación JSON → data/json/{id_noticia}.json.
+
+        - Clasifica los fallos por causa y los lista al final.
+        - Reanuda: si ya existe un JSON válido, no vuelve a llamar a Gemini.
+        - Los JSON rechazados por el validador se mueven a data/json_rechazados/
+          para que no lleguen al vault de Obsidian.
+        """
         print("== Etapa: extraer (Gemini) ==")
         noticias = self._leer_urls()
         if not GEMINI_API_KEY:
@@ -124,30 +130,87 @@ class PipelineLaboratorio:
             )
             return 0, len(noticias)
 
-        ok, fallos = 0, 0
+        dir_rechazados = DIR_JSON.parent / "json_rechazados"
+        dir_rechazados.mkdir(parents=True, exist_ok=True)
+
+        ok = 0
+        fallos: dict[str, list[tuple[str, str]]] = {
+            "sin_texto": [],
+            "texto_vacio": [],
+            "gemini": [],
+            "validacion": [],
+        }
+
         for noticia in noticias:
-            print(f"  [{noticia.id_noticia}] {noticia.fuente}")
+            id_ = noticia.id_noticia
+            print(f"  [{id_}] {noticia.fuente}")
+            ruta_json = DIR_JSON / f"{id_}.json"
+
+            # 1) Texto capturado
             try:
-                noticia.texto_limpio = self.repositorio.leer_texto(noticia.id_noticia)
-                if not (noticia.texto_limpio or "").strip():
-                    print("    Texto vacío; se omite.")
-                    fallos += 1
-                    continue
-                self.extractor.extraer(noticia)
-                self.validador.validar(DIR_JSON / f"{noticia.id_noticia}.json")
-                print("    OK: JSON validado")
-                ok += 1
+                noticia.texto_limpio = self.repositorio.leer_texto(id_)
             except FileNotFoundError:
-                fallos += 1
-                print(
-                    "    No hay texto en data/processed/. "
-                    "Ejecute primero: python main.py capturar"
-                )
-            except Exception as exc:  # noqa: BLE001 — una noticia no debe tumbar el lote
-                fallos += 1
-                print(f"    Error: {exc}")
-        print(f"Extracción finalizada: {ok} ok, {fallos} fallos, {len(noticias)} total")
-        return ok, fallos
+                fallos["sin_texto"].append((id_, "no hay texto en data/processed/"))
+                print("    Sin texto capturado (falló 'capturar'); se omite.")
+                continue
+            if not (noticia.texto_limpio or "").strip():
+                fallos["texto_vacio"].append((id_, "texto vacío"))
+                print("    Texto vacío; se omite.")
+                continue
+
+            # 2) Reanudar: JSON previo válido → no gastar cuota de Gemini
+            if ruta_json.exists():
+                try:
+                    self.validador.validar(ruta_json, texto_fuente=noticia.texto_limpio)
+                    print("    OK: ya extraído y válido")
+                    ok += 1
+                    continue
+                except ValueError:
+                    pass  # existe pero es inválido: se vuelve a extraer
+
+            # 3) Extracción con Gemini
+           # try:
+          #      self.extractor.extraer(noticia)
+          #  except Exception as exc:  # noqa: BLE001 — una noticia no debe tumbar el lote
+         #       fallos["gemini"].append((id_, str(exc)))
+         #       print(f"    Error de Gemini: {exc}")
+         #       continue
+
+            # 4) Validación del JSON generado
+            try:
+                self.validador.validar(ruta_json, texto_fuente=noticia.texto_limpio)
+            except ValueError as exc:
+                ruta_json.replace(dir_rechazados / ruta_json.name)
+                fallos["validacion"].append((id_, str(exc)))
+                print(f"    Rechazado por el validador: {exc}")
+                continue
+
+            print("    OK: JSON validado")
+            ok += 1
+
+        # Un solo registro por noticia (el último intento)
+        self.validador.registro = list(
+            {
+                (r["id_noticia"] or r["archivo"]): r
+                for r in self.validador.registro
+            }.values()
+        )
+        self.validador.guardar_registro(DIR_JSON.parent / "validacion_registro.json")
+
+        total_fallos = sum(len(v) for v in fallos.values())
+        print(f"\nExtracción finalizada: {ok} ok, {total_fallos} fallos, {len(noticias)} total")
+        etiquetas = {
+            "sin_texto": "Sin texto capturado (revisar 'capturar')",
+            "texto_vacio": "Texto vacío",
+            "gemini": "Error de Gemini (cuota, respuesta vacía o JSON mal formado)",
+            "validacion": "Rechazados por el validador (movidos a data/json_rechazados/)",
+        }
+        for tipo, lista in fallos.items():
+            if lista:
+                print(f"  - {etiquetas[tipo]}: {len(lista)}")
+                for id_, msg in lista:
+                    print(f"      {id_}: {msg[:160]}")
+        return ok, total_fallos
 
     def ejecutar_obsidian(self) -> None:
         """TODO(alumno): JSON → notas Markdown enlazadas."""

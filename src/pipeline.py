@@ -116,10 +116,13 @@ class PipelineLaboratorio:
     def ejecutar_extraccion(self) -> tuple[int, int]:
         """Gemini + validación JSON → data/json/{id_noticia}.json.
 
-        - Clasifica los fallos por causa y los lista al final.
-        - Reanuda: si ya existe un JSON válido, no vuelve a llamar a Gemini.
-        - Los JSON rechazados por el validador se mueven a data/json_rechazados/
-          para que no lleguen al vault de Obsidian.
+        En el proceso de validación del JSON, hay situaciones que son errores o advertencias.
+        Los JSON con errores son descartados. Aquellos con advertencias se dejan.
+        
+        Si ya existe un JSON válido, no vuelve a llamar a Gemini.
+
+        Los JSON rechazados se va a data/json_rechazados/
+        para que no lleguen al vault de Obsidian.
         """
         print("== Etapa: extraer (Gemini) ==")
         noticias = self._leer_urls()
@@ -169,12 +172,12 @@ class PipelineLaboratorio:
                     pass  # existe pero es inválido: se vuelve a extraer
 
             # 3) Extracción con Gemini
-           # try:
-          #      self.extractor.extraer(noticia)
-          #  except Exception as exc:  # noqa: BLE001 — una noticia no debe tumbar el lote
-         #       fallos["gemini"].append((id_, str(exc)))
-         #       print(f"    Error de Gemini: {exc}")
-         #       continue
+            try:
+                self.extractor.extraer(noticia)
+            except Exception as exc:  # noqa: BLE001 — una noticia no debe tumbar el lote
+                fallos["gemini"].append((id_, str(exc)))
+                print(f"    Error de Gemini: {exc}")
+                continue
 
             # 4) Validación del JSON generado
             try:

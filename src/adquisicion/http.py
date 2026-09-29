@@ -8,6 +8,7 @@ import requests
 
 from src.config import PAUSA_ENTRE_REQUESTS, TIMEOUT_HTTP, USER_AGENT
 
+from googlenewsdecoder import gnewsdecoder
 
 class ClienteHTTP:
     """Sesión HTTP educada para no sobrecargar servidores de prensa."""
@@ -42,5 +43,6 @@ class ClienteHTTP:
 
     def url_final(self, url: str) -> str:
         """Sigue redirecciones y devuelve la URL canónica del medio."""
-        respuesta = self.obtener(url, permitir_redirects=True)
-        return respuesta.url or url
+        #respuesta = self.obtener(url, permitir_redirects=True)
+        resultado = gnewsdecoder(url)["decoded_url"]
+        return resultado

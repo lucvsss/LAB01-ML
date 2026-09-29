@@ -16,9 +16,7 @@ class RelacionNoticias:
 
 
 class AnalizadorRelaciones:
-    """Sección 10 de la ficha: dos noticias se relacionan si comparten
-    un mismo sujeto, una misma organización, o la misma comuna y delito.
-    """
+    #Seccion 10 de la ficha, dos noticias se relacionan si comparten un mismo sujeto, una misma organizacion, o la misma comuna y delito.
 
     def calcular(self, noticias: list[dict]) -> list[RelacionNoticias]:
         relaciones = []
@@ -31,12 +29,12 @@ class AnalizadorRelaciones:
     def _motivos(self, a: dict, b: dict) -> list[str]:
         motivos = []
 
-        # Mismo sujeto (identidad confirmada o no, sección 7)
+        # Mismo sujeto
         personas_a = self._personas(a)
         personas_b = self._personas(b)
         comunes = personas_a & personas_b
-        # Identidades no confirmadas (iniciales) solo se conectan si además
-        # comparten la misma comuna y el mismo hecho (sección 7 de la ficha)
+        # Identidades no confirmadas solo se conectan si además
+        # comparten la misma comuna y el mismo hecho
         for p in sorted(comunes):
             if self._es_no_confirmada(p):
                 if set(a.get("comunas", [])) & set(b.get("comunas", [])):
@@ -44,7 +42,7 @@ class AnalizadorRelaciones:
             else:
                 motivos.append(f"misma persona: {p}")
 
-        # Misma organización
+        # Misma organizacion
         orgs_a = {o for o in a.get("organizaciones", []) if not es_institucion(o)}
         orgs_b = {o for o in b.get("organizaciones", []) if not es_institucion(o)}
         for o in sorted(orgs_a & orgs_b):
